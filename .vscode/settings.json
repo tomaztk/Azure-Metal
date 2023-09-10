@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7bb22fd9-06b5-445f-b8d4-570117630941/resourceGroups/RG_metal/providers/Microsoft.Web/sites/HowMetalAreYou",
+    "appService.deploySubpath": "."
+}
