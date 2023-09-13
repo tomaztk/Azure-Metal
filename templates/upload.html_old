@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+    <title>Hello Metalfans - Test yourself!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+   <body style="background-color:grey;">
+     <main>
+
+<div class="px-4 py-3 my-2 text-center">
+	<img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/crazy-data-science.png') }}" 
+	alt="CDS Logo" width="192" height="192"/>
+	<!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+	<h1 class="display-6 fw-bold text-primary" color="black">How <b>M*E*T*A*L</b> are you? - Test yourself!</h1>            
+  </div>
+<h2>Upload your photo!</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+{% if filename %}
+	<div>
+		<img src="{{ url_for('display_image', filename=filename) }}">
+	</div>
+{% endif %}
+<form method="post" action="/" enctype="multipart/form-data">
+	<div class="col-md-6 mx-auto text-center">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Test Me">
+	</p>
+	</div>
+</form>
+</main>      
+</body>
+</html>

@@ -1,33 +1,19 @@
-<!doctype html>
-<head>
-    <title>Hello Metalfans - Test yourself!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-</head>
-<h2>Select an image to upload and display</h2>
-<p>
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-		<ul>
-		{% for message in messages %}
-		  <li>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	  {% endif %}
-	{% endwith %}
-</p>
-{% if filename %}
-	<div>
-		<img src="{{ url_for('display_image', filename=filename) }}">
-	</div>
-{% endif %}
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-		<p>
-			<input type="file" name="file" autocomplete="off" required>
-		</p>
-    </dl>
-    <p>
-		<input type="submit" value="Submit">
-	</p>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello Metalfans - Test yourself!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    </head>
+<body style="background-color:grey;">
+    <div class="px-4 py-3 my-2 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/crazy-data-science.png') }}" 
+        alt="CDS Logo" width="192" height="192"/>
+    <h1>Rate how M*E*T*A*L are you!!!</h1>
+</div>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <input type="submit" value="Test Me!">
+    </form>
+</body>
+</html>
