@@ -13,8 +13,8 @@
 </div>
 
     <h2>You look like:</h2>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Photo">
-    <p>And your metal score is:</p>
-    {{ photo_info|safe }}
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Photo" >
+    <p class="px-4 py-3 my-2 text-center">And your metal score is:</p>
+    <H2 class="display-6 fw-bold text-primary" color="black" class="px-4 py-3 my-2 text-center">{{ photo_info | safe }}</H2>
 </body>
 </html>

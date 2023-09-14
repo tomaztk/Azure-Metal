@@ -11,7 +11,7 @@ from feat.plotting import imshow
 app = Flask(__name__)
 
 # Define the folder where uploaded photos will be stored
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Function to categorize the value
