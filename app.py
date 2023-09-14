@@ -25,25 +25,7 @@ def categorize(value, categories):
 def get_photo_dimensions(photo_path):
     detector = Detector(emotion_model = 'resmasknet')
     #img = Image.open(photo_path)
-    single_face_prediction = detector.detect_image(photo_path)
-    scoress = (single_face_prediction[['anger','disgust','fear','happiness','sadness','surprise','neutral']])
-    dff = pd.DataFrame(scoress)
 
-    anger_value = dff.loc[0, 'anger']
-    disgust_value = dff.loc[0, 'disgust']
-    fear_value = dff.loc[0, 'fear']
-    happiness_value = dff.loc[0, 'happiness']
-    sadness_value = dff.loc[0, 'sadness']
-    surprise_value = dff.loc[0, 'surprise'] 
-    neutral_value = dff.loc[0, 'neutral']
-
-    weights = {'anger': 0.4,   # Weighted higher
-           'disgust': 0.4, # Weighted higher
-           'fear': 0.3,    # Weighted higher
-           'happiness': 0.01,
-           'sadness': 0.1,
-           'surprise': 0.15,
-           'neutral': 0.05}
     
     overall_score = sum(dff[emotion] * weights[emotion] for emotion in dff.columns)
 
@@ -58,8 +40,6 @@ def get_photo_dimensions(photo_path):
     overall_score2 = overall_score.iloc[0]
     metal_category = categorize(overall_score2, categories)
 
-    #return anger_value, disgust_value, fear_value, happiness_value, sadness_value, surprise_value, neutral_value
-    #return overall_score
     return metal_category
 
 @app.route('/', methods=['GET', 'POST'])
@@ -81,15 +61,8 @@ def upload_photo():
             file.save(filename)
 
             # Get photo score
-            #anger_value, disgust_value, fear_value, happiness_value, sadness_value, surprise_value, neutral_value = get_photo_dimensions(filename)
-            #overall_score = get_photo_dimensions(filename)
             metal_category = get_photo_dimensions(filename)
 
-
-            # Create a Pandas DataFrame with photo information
-            #photo_info = pd.DataFrame({'Attribute': ['Filename', 'Anger', 'Disgust', 'Fear', 'Happiness', 'Sadness', 'Surprise', 'Neutral'],
-            #                           'Value': [file.filename, anger_value, disgust_value, fear_value, happiness_value, sadness_value, surprise_value, neutral_value]})
-            
             photo_info = pd.DataFrame({
                                        '': [metal_category]})
 
